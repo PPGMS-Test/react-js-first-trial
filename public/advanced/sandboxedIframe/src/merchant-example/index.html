@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal iframe Example</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💸</text></svg>"
+    />
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        :root {
+            --theme-color-text: #0a1b0f;
+            --theme-color-background: #f7fcf9;
+            --theme-color-primary: #334037;
+            --theme-color-secondary: #93e3ab;
+            --theme-color-accent: #62dc87;
+            --theme-color-overlay-cta: #ffffff;
+            --theme-color-overlay-background: #000000aa;
+            --theme-color-overlay-background-close-text: #cccccc;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            color: var(--theme-color-text);
+            background-color: #f5f5f5;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+            padding: 2rem 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0079c1 0%, #003087 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        button {
+            border: none;
+            font-size: 1em;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #stateDebug {
+            padding: 5px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background: var(--theme-color-secondary);
+            z-index: 100;
+        }
+
+        #mainContainer {
+            padding: 10px;
+        }
+
+        #extraHeight {
+            background: var(--theme-color-background);
+            height: 1000px;
+            width: 100%;
+        }
+
+        #overlayContainer {
+            background: none;
+            border: none;
+            overflow: visible;
+            text-align: center;
+        }
+
+        #overlayContainerLogo {
+            margin-bottom: 10px;
+        }
+
+        #overlayCloseButtonCTA {
+            background: var(--theme-color-overlay-cta);
+            cursor: pointer;
+            border-radius: 20px;
+            padding: 10px 20px;
+        }
+
+        #overlayCloseButtonBackdrop {
+            background: none;
+            color: var(--theme-color-overlay-background-close-text);
+            position: fixed;
+            top: 0;
+            right: 0;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        #overlayContainer::backdrop {
+            background: var(--theme-color-overlay-background);
+        }
+
+        #iframeWrapper {
+            border: none;
+            width: 100%;
+            height: 300px;
+        }
+
+        #iframeWrapper.fullWindow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .stateValue {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1><i class="material-icons">web_asset</i> PayPal iframe Example</h1>
+            <p class="flow-text">Merchant page with sandboxed PayPal iframe integration</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Overview</span>
+                            <p>
+                                The parent page is an example merchant page. Within the merchant page,
+                                an iframe uses the PayPal web SDK and communicates with a server that
+                                has access to the PayPal server SDK. The merchant page and iframe then
+                                communicate about the state of the payment flow via postMessage. Using
+                                the PayPal web SDK in this way, inside an iframe, avoids having to
+                                request the SDK script directly from the merchant page.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Merchant Page State</span>
+                            <ul>
+                                <li>
+                                    <span>merchant page domain:</span>
+                                    <span id="merchantDomain" class="stateValue"></span>
+                                </li>
+                                <li>
+                                    <span>last message from iframe: </span>
+                                    <span id="postMessageStatus" class="stateValue">No messages 😴</span>
+                                </li>
+                                <li>
+                                    <span>selected presentationMode from iframe: </span>
+                                    <span id="presentationMode" class="stateValue">Not set 🤔</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">PayPal iframe</span>
+                            <iframe
+                                id="iframeWrapper"
+                                src="http://localhost:3000/?origin=http://localhost:3001"
+                                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                                allow="payment"
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Extra Content</span>
+                            <div id="extraHeight">Some extra height follows...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <dialog id="overlayContainer">
+        <div id="overlayContainerLogo">
+            <img
+                src="https://www.paypalobjects.com/js-sdk-logos/2.2.7/paypal-white.svg"
+            />
+        </div>
+        <button id="overlayCloseButtonCTA">Close</button>
+        <button id="overlayCloseButtonBackdrop">X</button>
+    </dialog>
+
+    <script async src="/app.js" onload="onLoad()"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Materialize components
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

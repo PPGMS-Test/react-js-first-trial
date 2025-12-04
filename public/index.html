@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Web SDK Integration Examples</title>
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #0079c1 0%, #003087 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .card {
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1.5rem !important;
+            font-weight: 500 !important;
+            display: flex;
+            align-items: center;
+        }
+        .card-title i {
+            margin-right: 10px;
+        }
+        .btn-large {
+            width: 100%;
+            text-align: left;
+            padding: 0 20px;
+            height: auto;
+            min-height: 54px;
+            line-height: normal;
+        }
+        .btn-large i {
+            float: right;
+            line-height: inherit;
+        }
+        footer {
+            padding: 20px 0;
+            background-color: #fff;
+        }
+        .collection-item {
+            border-left: 4px solid #0079c1 !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1><i class="material-icons">account_balance_wallet</i> PayPal Web SDK Integration Examples</h1>
+            <p class="flow-text">Explore various PayPal integration methods with our sample implementations</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><i class="material-icons">verified_user</i>Merchant Async Validation</span>
+                            <p>Advanced integration with merchant async validation for PayPal button.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/advanced/merchantAsyncValidation/index.html" class="waves-effect waves-light btn-large blue">
+                                View Example
+                                <i class="material-icons right">arrow_forward</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><i class="material-icons">payment</i>Payment Handler</span>
+                            <p>Advanced "payment-handler" presentation mode with PayPal button.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/advanced/paymentHandler/index.html" class="waves-effect waves-light btn-large blue">
+                                View Example
+                                <i class="material-icons right">arrow_forward</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><i class="material-icons">sync_alt</i>Redirect Flow</span>
+                            <p>Advanced redirect flow implementation with PayPal button.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/advanced/redirect/index.html" class="waves-effect waves-light btn-large blue">
+                                View Example
+                                <i class="material-icons right">arrow_forward</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><i class="material-icons">phone_iphone</i>Direct App Switch</span>
+                            <p>Advanced direct app switch flow with PayPal button.</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/advanced/directAppSwitch/index.html" class="waves-effect waves-light btn-large blue">
+                                View Example
+                                <i class="material-icons right">arrow_forward</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer white">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p class="grey-text text-darken-1 center">
+                        <i class="material-icons">copyright</i> PayPal Web SDK Integration Examples
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Materialize components
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

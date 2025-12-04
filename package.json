@@ -1,0 +1,34 @@
+{
+  "name": "v6-web-sdk-sample-integration-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js Express server that provides several routes that wrap the PayPal APIs",
+  "main": "src/server.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "check-node-version": "tsx src/checkNodeVersion.ts",
+    "clean": "rm -rf dist",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint": "echo \"eslint is not set up\"",
+    "start": "npm run check-node-version && tsx --watch src/server.ts",
+    "start-production": "NODE_ENV=production node dist/server.js"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@paypal/paypal-server-sdk": "^1.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.14.0",
+    "@types/semver": "^7.7.0",
+    "prettier": "^3.6.2",
+    "semver": "^7.7.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}

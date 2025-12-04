@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>One-Time Payment - Direct App Switch - PayPal Web SDK</title>
+        <!-- Material Design Icons -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <!-- Materialize CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <style>
+            body {
+                background-color: #f5f5f5;
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+            }
+            main {
+                flex: 1 0 auto;
+                padding: 2rem 0;
+            }
+            .header {
+                background: linear-gradient(135deg, #0079c1 0%, #003087 100%);
+                color: white;
+                padding: 2rem 0;
+                margin-bottom: 2rem;
+            }
+            .card {
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .paypal-button-container {
+                margin: 2rem 0;
+                padding: 1rem;
+                border: 1px dashed #ccc;
+                border-radius: 4px;
+                text-align: center;
+            }
+            .feature-list {
+                margin: 1rem 0;
+            }
+            .feature-list li {
+                margin-bottom: 0.5rem;
+            }
+            footer {
+                padding: 20px 0;
+                background-color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <h1>
+                    <i class="material-icons">swap_horiz</i> Direct App Switch
+                </h1>
+                <p class="flow-text">
+                    Advanced integration with direct app switch for PayPal
+                    button
+                </p>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Overview</span>
+                                <p>
+                                    This example demonstrates the direct app
+                                    switch flow with PayPal button. This
+                                    integration allows customers to switch
+                                    directly to the PayPal app to complete their
+                                    payment.
+                                </p>
+
+                                <div class="feature-list">
+                                    <h5>Key Features:</h5>
+                                    <ul class="browser-default">
+                                        <li>
+                                            <i
+                                                class="material-icons tiny blue-text"
+                                                >check</i
+                                            >
+                                            Seamless transition to PayPal mobile
+                                            app
+                                        </li>
+                                        <li>
+                                            <i
+                                                class="material-icons tiny blue-text"
+                                                >check</i
+                                            >
+                                            Enhanced mobile payment experience
+                                        </li>
+                                        <li>
+                                            <i
+                                                class="material-icons tiny blue-text"
+                                                >check</i
+                                            >
+                                            Faster checkout process for mobile
+                                            users
+                                        </li>
+                                    </ul>
+                                </div>
+
+                               
+
+                                <div class="paypal-button-container">
+                                    <h5>PayPal Button</h5>
+                                    <div id="button-container">
+                                        <paypal-button
+                                            id="paypal-button"
+                                            hidden
+                                        ></paypal-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="page-footer white">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <p class="grey-text text-darken-1 center">
+                            <a href="/index.html" class="blue-text">
+                                <i class="material-icons">arrow_back</i> Back to
+                                Examples
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Initialize Materialize components
+                M.AutoInit();
+            });
+        </script>
+        <script
+            async
+            onload="onPayPalWebSdkLoaded()"
+            src="https://www.sandbox.paypal.com/web-sdk/v6/core"
+        ></script>
+    </body>
+</html>
